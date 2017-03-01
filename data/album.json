@@ -1,0 +1,12 @@
+{
+    "jay-album": {
+        "name": "周杰伦的床边故事",
+        "author": "周杰伦",
+        "singlesList": ["jay01","jay02","jay03","jay04","jay05","jay06","jay07","jay08","jay09","jay10"]
+    },
+    "Mars-album": {
+        "name": "24K Magic",
+        "author": "Bruno Mars",
+        "singlesList": ["Mars01","Mars02","Mars03","Mars04","Mars05","Mars06","Mars07","Mars08","Mars09"]
+    }
+}
