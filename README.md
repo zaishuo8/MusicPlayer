@@ -2,15 +2,13 @@
 mp3 的资源文件没有上传,所以直接 clone 回去用不了<br/>
 <br/>
 1.组件架构:<br/>
-MyMusic                // 曲库 【容器组件】<br/>
-    Controller          // 批量操作控制组件 【展示组件】<br/>
-    SinglesList         // 曲库中单曲列表 【展示组件】<br/>
-MyMusic<br/>
-MusicPlayer            // 播放器 【容器组件】<br/>
-    ListController      // 播放器中批量操作组件 【展示组件】<br/>
-    PlayerList          // 播放列表 【展示组件】<br/>
-    PlayController      // 播放控制器 (上、下一曲,播放暂停,循环方式,音量控制) 【展示组件】<br/>
-MusicPlayer<br/>
+MyMusic&nbsp;&nbsp;// 曲库 【容器组件】<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Controller&nbsp;&nbsp;// 批量操作控制组件 【展示组件】<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SinglesList&nbsp;&nbsp;// 曲库中单曲列表 【展示组件】<br/>
+MusicPlayer &nbsp;&nbsp;// 播放器 【容器组件】<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ListController&nbsp;&nbsp;// 播放器中批量操作组件 【展示组件】<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PlayerList&nbsp;&nbsp;// 播放列表 【展示组件】<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PlayController &nbsp;&nbsp;// 播放控制器 (上、下一曲,播放暂停,循环方式,音量控制) 【展示组件】<br/>
 <br/>
 <br/>
 <br/>
