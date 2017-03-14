@@ -5,45 +5,45 @@ export default class Controller extends Component{
     render(){
 
         let isPlayObj = {
-            display: this.props.currentSingle.isPlay ? 'none' : 'inline-block'
-        };
-
-        let isPauseObj = {
-            fontSize: '36px',
-            display: this.props.currentSingle.isPlay ? 'inline-block' : 'none'
-        };
-
-        let allLoopObj = {
-            display: this.props.loopModel === 'all-loop' ? 'inline-block' : 'none'
-        };
-
-        let oneLoopObj = {
-            fontSize: '36px',
-            display: this.props.loopModel === 'one-loop' ? 'inline-block' : 'none'
-        };
-
-        let orderLoopObj = {
-            fontSize: '36px',
-            display: this.props.loopModel === 'order-loop' ? 'inline-block' : 'none'
-        };
-
-        let randomLoopObj = {
-            display: this.props.loopModel === 'random-loop' ? 'inline-block' : 'none'
-        };
+                display: this.props.currentSingle.isPlay ? 'none' : 'inline-block'
+            },
+            isPauseObj = {
+                fontSize: '36px',
+                display: this.props.currentSingle.isPlay ? 'inline-block' : 'none'
+            },
+            allLoopObj = {
+                display: this.props.loopModel === 'all-loop' ? 'inline-block' : 'none'
+            },
+            oneLoopObj = {
+                fontSize: '36px',
+                display: this.props.loopModel === 'one-loop' ? 'inline-block' : 'none'
+            },
+            orderLoopObj = {
+                fontSize: '36px',
+                display: this.props.loopModel === 'order-loop' ? 'inline-block' : 'none'
+            },
+            randomLoopObj = {
+                display: this.props.loopModel === 'random-loop' ? 'inline-block' : 'none'
+            };
 
         let currentSingleName = this.props.currentSingle.singleId ? (this.props.singles[this.props.currentSingle.singleId].name + ' - ') : '';
         let currentSingleAuthor = this.props.currentSingle.singleId ? (this.props.singles[this.props.currentSingle.singleId].author) : '';
         let durition = this.props.currentSingle.singleId ? (this.props.singles[this.props.currentSingle.singleId].durition) : '00:00';
         let currentTimes = this.props.currentSingle.singleId ? (this.props.currentTimes + ' / ') : '00:00 / ';
 
+
+        // 把 05:15 转换成 315 秒
         function getTimesBySec(times) {
             let timesArry = times.split(':');
             return parseInt(timesArry[0]) * 60 + parseInt(timesArry[1]);
         }
+
+        // 计算 进度 百分比 ,用于显示进度条的位置
         function countDurPercent(surrSec, duriSec) {
             return surrSec / duriSec;
         }
 
+        // 计算进度条百分比
         let durValue = this.props.currentSingle.singleId ?
             (countDurPercent(getTimesBySec(currentTimes),getTimesBySec(durition))) : '0';
 

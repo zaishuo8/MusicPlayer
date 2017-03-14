@@ -28,6 +28,7 @@ export const PLAY_ALL = 'PLAY_ALL';
  * action 创建函数
  */
 
+// 切换 曲库 播放器 界面
 export function changeTab(tab) {
     return{
         type: CHANGE_TAB,
@@ -35,6 +36,9 @@ export function changeTab(tab) {
     }
 }
 
+
+
+// 加载 曲库列表
 export function loadSingles(singles) {
     return {
         type: LOAD_SINGLES,
@@ -42,6 +46,9 @@ export function loadSingles(singles) {
     }
 }
 
+
+
+// 加载 专辑列表
 export function loadAlbum(album) {
     return {
         type: LOAD_ALBUM,
@@ -49,6 +56,9 @@ export function loadAlbum(album) {
     }
 }
 
+
+
+// 添加到播放列表
 export function addPlaylist(singleIdArray) {
     return{
         type: ADD_PLAYLIST,
@@ -56,6 +66,9 @@ export function addPlaylist(singleIdArray) {
     }
 }
 
+
+
+// 从播放列表中移除
 export function removePlaylist(singleId) {
     return{
         type: REMOVE_PLAYLIST,
@@ -63,6 +76,9 @@ export function removePlaylist(singleId) {
     }
 }
 
+
+
+// 播放该单曲
 export function playThisSingle(currentSingle) {
     return{
         type: PLAY_THIS_SINGLE,
@@ -70,6 +86,9 @@ export function playThisSingle(currentSingle) {
     }
 }
 
+
+
+// 曲库中直接播放的单曲添加到 播放列表 表头
 export function playThisSingleToList(singleIdArray) {
     return{
         type: PLAY_THIS_SINGLE_TO_LIST,
@@ -77,6 +96,9 @@ export function playThisSingleToList(singleIdArray) {
     }
 }
 
+
+
+// 获取浏览器高度
 export function getBrowserHeight(browserHeight) {
     return{
         type: GET_BROWSER_HEIGHT,
@@ -84,6 +106,9 @@ export function getBrowserHeight(browserHeight) {
     }
 }
 
+
+
+// 控制器上播放按钮
 export function doPlay(currentSingle) {
     return{
         type: DO_PLAY,
@@ -91,6 +116,9 @@ export function doPlay(currentSingle) {
     }
 }
 
+
+
+// 控制器上暂停按钮
 export function doPause(currentSingle) {
     return{
         type: DO_PAUSE,
@@ -98,6 +126,9 @@ export function doPause(currentSingle) {
     }
 }
 
+
+
+// 切换循环方式
 export function changeLoop(loopModel) {
     return{
         type: CHANGE_LOOP,
@@ -105,6 +136,9 @@ export function changeLoop(loopModel) {
     }
 }
 
+
+
+// 控制器上 随意拖动进度条修改 当前播放时间
 export function setCurrentTime(currentTimes) {
     return{
         type: SET_CURRENTTIME,
@@ -112,6 +146,9 @@ export function setCurrentTime(currentTimes) {
     }
 }
 
+
+
+// 播放上一曲
 export function playPreSingle(preSingle) {
     return{
         type: PRE_SINGLE,
@@ -119,6 +156,9 @@ export function playPreSingle(preSingle) {
     }
 }
 
+
+
+// 播放下一曲
 export function playNextSingle(nextSingle) {
     return{
         type: NEXT_SINGLE,
@@ -126,6 +166,9 @@ export function playNextSingle(nextSingle) {
     }
 }
 
+
+
+// 鼠标移上播放列表
 export function playListHovered(singleId) {
     return{
         type: PLAYLIST_HOVERED,
@@ -133,12 +176,18 @@ export function playListHovered(singleId) {
     }
 }
 
+
+
+// 鼠标移开播放列表
 export function playListHoverOut() {
     return{
         type: PLAYLIST_HOVEREOUT
     }
 }
 
+
+
+// 鼠标移上曲库列表
 export function singleListHovered(singleId) {
     return{
         type: SINGLELIST_HOVERED,
@@ -146,12 +195,18 @@ export function singleListHovered(singleId) {
     }
 }
 
+
+
+// 鼠标移开曲库列表
 export function singleListHoverOut() {
     return{
         type: SINGLELIST_HOVEREOUT
     }
 }
 
+
+
+// 修改音量
 export function changeValum(valum) {
     return{
         type: CHANGE_VALUM,
@@ -159,6 +214,9 @@ export function changeValum(valum) {
     }
 }
 
+
+
+// 播放全部
 export function playAll(singleIdArray) {
     return{
         type: PLAY_ALL,

@@ -4,7 +4,7 @@ import { changeTab, loadSingles, loadAlbum, addPlaylist, playThisSingle, playThi
     singleListHovered, singleListHoverOut, playAll } from '../actions/actions';
 require('../style/app.scss');
 let singlesData = require('../data/singles.json');
-let albumData = require('../data/album.json');
+// let albumData = require('../data/album.json');
 import Controller from './components/Controller';
 import SlinglesList from './components/SlinglesList';
 
@@ -14,6 +14,7 @@ class App extends Component {
 
         const { dispatch } = this.props;
 
+        // 准备数据, 把图片和 src 放入数据对象
         singlesData = (function getAudioImgUrlandSrc(singles) {
             for (let key in singles){
                 singles[key].imgUrl = "./resource/img/" + singles[key].imgName + ".jpg";
@@ -22,27 +23,35 @@ class App extends Component {
             return singles;
         })(singlesData);
 
-        albumData = (function getAlbumImgUrl(album){
-            for (let key in album){
-                album[key].imgUrl = "./resource/img/" + album[key].name + ".jpg";
-            }
-            return album;
-        })(albumData);
-
+        // 修改 store
         dispatch(loadSingles(singlesData));
-        dispatch(loadAlbum(albumData));
+
+
+
+        // albumData = (function getAlbumImgUrl(album){
+        //     for (let key in album){
+        //         album[key].imgUrl = "./resource/img/" + album[key].name + ".jpg";
+        //     }
+        //     return album;
+        // })(albumData);
+        //
+        // dispatch(loadAlbum(albumData));
 
 
     }
 
     render() {
 
-        const { nowTab, singles, currentSingle, singleListHoveredId, playList } = this.props;
+        const { nowTab, singles, currentSingle, singleListHoveredId } = this.props;
+
 
         let myMusicStyle = {
             display: nowTab === 'myMusic' ? 'block' : 'none'
         };
 
+
+        // 点击播放全部, dispatch 曲库列表中所有的 singleId 组成的数组
+        // 同时设置 第一首 单曲为 当前播放
         let playAllClick = (function () {
 
             let addIdList = [];
@@ -65,6 +74,9 @@ class App extends Component {
 
         }).bind(this);
 
+
+
+        // 点击添加单曲到播放列表
         let addSingleClick = (function (key) {
             this.props.dispatch(addPlaylist([key]));
 
@@ -81,9 +93,11 @@ class App extends Component {
 
         }).bind(this);
 
+
+        // 点击播放该单曲
         let playThisSingleClick = (function (key) {
-            this.props.dispatch(playThisSingleToList([key]));
-            this.props.dispatch(playThisSingle(
+            this.props.dispatch(playThisSingleToList([key]));   // 将该单曲放到播放列表头部
+            this.props.dispatch(playThisSingle(                 // 将该单曲设置为当前播放曲目
                 {
                     singleId: key,
                     isPlay: true,
@@ -93,25 +107,37 @@ class App extends Component {
         }).bind(this);
 
 
+        // hover 到需要被操作的单曲上
         let singleHovered = (function (singleId) {
             this.props.dispatch(singleListHovered(singleId));
         }).bind(this);
 
 
+        // hoverout 该单曲
         let singleHoverOut = (function () {
             this.props.dispatch(singleListHoverOut());
         }).bind(this);
 
         return (
             <div className="myMusic" style={ myMusicStyle }>
+
                 <Controller playAllClick = { playAllClick }></Controller>
-                <i style={{ float: 'right', fontSize: '40px', marginTop: '-42px' }} className="icon iconfont"
-                    onClick={ (function () {
+
+                <i style={{ float: 'right', fontSize: '40px', marginTop: '-42px' }}
+                   className="icon iconfont"
+                   onClick={ (function () {
                         this.props.dispatch(changeTab('musicPlayer'));
-                    }).bind(this)  }>&#xe626;</i>
-                <SlinglesList playThisSingleClick = { playThisSingleClick } addSingleClick = { addSingleClick } singles = { singles }
-                              singleHovered={ singleHovered } singleListHoveredId={singleListHoveredId}
-                              singleHoverOut={singleHoverOut}></SlinglesList>
+                   }).bind(this)  }>&#xe626;
+                </i>
+
+                <SlinglesList singles = { singles }
+                              playThisSingleClick = { playThisSingleClick }
+                              addSingleClick = { addSingleClick }
+                              singleHovered={ singleHovered }
+                              singleListHoveredId={ singleListHoveredId }
+                              singleHoverOut={ singleHoverOut }>
+                </SlinglesList>
+
             </div>
         )
     }
@@ -127,8 +153,7 @@ function mapStateToProps(state) {
         nowTab: state.tab,
         singles: state.loadSingles,
         currentSingle: state.currentSingle,
-        singleListHoveredId: state.singleListHovered,
-        playList: state.playList
+        singleListHoveredId: state.singleListHovered
     }
 }
 

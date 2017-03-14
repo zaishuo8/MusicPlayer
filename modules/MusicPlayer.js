@@ -13,6 +13,8 @@ class App extends Component {
 
         const { dispatch } = this.props;
 
+
+        // 获取浏览器高度
         let browserHeight = document.documentElement.clientHeight;
         dispatch(getBrowserHeight(browserHeight));
 
@@ -86,18 +88,22 @@ class App extends Component {
             backgroundColor: '#292a2b'
         };
 
+
+        // 点击播放
         let doPlayClick = (function (currentSingle) {
             dispatch(doPlay(currentSingle));
             this.refs.trueAudio.play();
         }).bind(this);
 
+
+        // 点击暂停
         let doPauseClick = (function (currentSingle) {
             dispatch(doPause(currentSingle));
             this.refs.trueAudio.pause();
         }).bind(this);
 
 
-
+        // 点击修改循环方式
         let changeLoopClick = function (loopModel) {
             switch (loopModel){
                 case 'all-loop':
@@ -115,9 +121,13 @@ class App extends Component {
             }
         };
 
+
+
+        // 真实的音频资源地址
         let src = currentSingle.singleId ? (singles[currentSingle.singleId].src) : '';
 
 
+        // 点击上一曲
         let preSingleClick = (function () {
 
             let singleId = '';
@@ -148,6 +158,8 @@ class App extends Component {
 
         }).bind(this);
 
+
+        // 点击下一曲
         let nextSingleClick = (function () {
 
             let singleId = '';
@@ -178,6 +190,9 @@ class App extends Component {
 
         }).bind(this);
 
+
+
+        // 播放该曲目
         let playListThisSingleClick = (function (key) {
             dispatch(playThisSingle(
                 {
@@ -197,14 +212,18 @@ class App extends Component {
             dispatch(playListHoverOut());
         }).bind(this);
 
+
+
+        // 修改音量
         let changeVolume = (function (changeVolumeDOM) {
             let newValum = changeVolumeDOM.value;
             this.refs.trueAudio.volume = newValum;
 
-            //这里改不改 reducers 中的 valume 都没关系,因为UI的展现不是由 state 控制的
             dispatch(changeValum(newValum));
         }).bind(this);
 
+
+        // 拖拽播放进度
         let dragCurrentTime = (function (dragDOM) {
 
             let newCurrent = (dragDOM.value * this.refs.trueAudio.duration);
@@ -228,11 +247,15 @@ class App extends Component {
         return (
             <div style={backGroungObj}>
                 <div className="musicPlayer">
+
                     <i style={{ float: 'right',fontSize: '50px' }} className="icon iconfont"
                        onClick={ (function () {
                            this.props.dispatch(changeTab('myMusic'));
-                       }).bind(this) }>&#xe61a;</i>
+                       }).bind(this) }>&#xe61a;
+                    </i>
+
                     <ListController></ListController>
+
                     <PlayList ref = 'playListId' playList = { playList }
                               singles = { singles }
                               browserHeight = {browserHeight}
@@ -242,7 +265,9 @@ class App extends Component {
                               singleHoverOut={ singleHoverOut }
                               currentSingle={currentSingle}
                               doPauseClick = {doPauseClick}
-                              doPlayClick = { doPlayClick }></PlayList>
+                              doPlayClick = { doPlayClick }>
+                    </PlayList>
+
                     <PlayController browserHeight = { browserHeight }
                                     currentSingle={currentSingle}
                                     doPlayClick = { doPlayClick }
@@ -255,8 +280,11 @@ class App extends Component {
                                     nextSingleClick = { nextSingleClick }
                                     valum = { valum }
                                     changeVolume = { changeVolume }
-                                    dragCurrentTime = { dragCurrentTime }></PlayController>
+                                    dragCurrentTime = { dragCurrentTime }>
+                    </PlayController>
+
                 </div>
+
                 <audio style={{ display: 'none' }} src={src} autoPlay={ currentSingle.isPlay }
                        ref='trueAudio' id="trueAudio" controls="controls" />
             </div>
