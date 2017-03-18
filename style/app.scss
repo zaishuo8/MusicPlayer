@@ -30,9 +30,40 @@ table .iconfont:hover{
     li {list-style-type:none;}
 }
 
+
+.nav{
+
+    li:hover{
+        color: white;
+        background-color: #31c27c;
+        cursor: pointer;
+    }
+}
+
+.myAlbum{
+    width: 90%;
+    margin: 0 auto;
+
+    li.ablumLi{
+        width: 220px;
+        float: left;
+        margin-right: 50px;
+        margin-bottom: 100px;
+        cursor: pointer;
+
+        img{
+            width: 220px;
+            width: 220px;
+        }
+
+    }
+}
+
+
+
 .myMusic{
     width: 90%;
-    margin: 30px auto;
+    margin: 0 auto;
 
     .controllerList{
         width: 50%;

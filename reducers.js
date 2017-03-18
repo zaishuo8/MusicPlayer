@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import { LOAD_SINGLES, LOAD_ALBUM, ADD_PLAYLIST, REMOVE_PLAYLIST, PLAY_THIS_SINGLE,
-    PLAY_THIS_SINGLE_TO_LIST ,GET_BROWSER_HEIGHT, DO_PLAY, DO_PAUSE, CHANGE_LOOP, SET_CURRENTTIME,
-    PRE_SINGLE, NEXT_SINGLE, PLAYLIST_HOVERED, PLAYLIST_HOVEREOUT, SINGLELIST_HOVERED,
-    SINGLELIST_HOVEREOUT, CHANGE_VALUM, CHANGE_TAB, PLAY_ALL } from './actions/actions';
+import { LOAD_SINGLES, LOAD_ALBUM, ADD_PLAYLIST,
+    REMOVE_PLAYLIST, PLAY_THIS_SINGLE,
+    PLAY_THIS_SINGLE_TO_LIST ,GET_BROWSER_HEIGHT, DO_PLAY,
+    DO_PAUSE, CHANGE_LOOP, SET_CURRENTTIME,
+    ANTHER_SINGLE, PLAYLIST_HOVERED,
+    PLAYLIST_HOVEREOUT, SINGLELIST_HOVERED,
+    SINGLELIST_HOVEREOUT, CHANGE_VALUM, CHANGE_TAB,
+    PLAY_ALL, CHANGE_CLICKTIP, REMOVE_ALL_SINGLE } from './actions/actions';
 
 // 当前页面: 曲库 ? 播放器
 function tab( state = 'myMusic', action ) {
@@ -63,12 +67,17 @@ function playList( state = [], action) {
         case PLAY_ALL:
             return unique(action.singleIdArray.concat(state.slice(0)));
 
+        // 移出播放列表
         case REMOVE_PLAYLIST:
             let newState = state.slice(0);
             for(let i = 0; i < newState.length; i++){
                 if(newState[i] === action.singleId) newState.splice(i, 1);
             }
             return newState;
+
+        // 移除所有歌曲
+        case REMOVE_ALL_SINGLE:
+            return [];
 
         default:
             return state;
@@ -91,10 +100,8 @@ function currentSingle( state = {
             return Object.assign({} ,state, { isPlay: false });
         case SET_CURRENTTIME:
             return Object.assign({} ,state, { currentTimes: action.currentTimes });
-        case PRE_SINGLE:
+        case ANTHER_SINGLE:
             return action.preSingle;
-        case NEXT_SINGLE:
-            return action.nextSingle;
         default:
             return state;
     }
@@ -160,6 +167,18 @@ function singleListHovered( state = '', action) {
 }
 
 
+
+// clickTip 状态
+function clickTipStatus( state = 'none', action) {
+    switch (action.type){
+        case CHANGE_CLICKTIP:
+            return action.opMessage
+        default:
+            return state;
+    }
+}
+
+
 const musicReducer = combineReducers({
     tab,
     loadSingles,
@@ -170,7 +189,8 @@ const musicReducer = combineReducers({
     loopModel,
     playListHovered,
     singleListHovered,
-    valum
+    valum,
+    clickTipStatus
 });
 
 export default musicReducer;

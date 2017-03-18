@@ -49,7 +49,8 @@ export default class PlayList extends Component{
                         { switchIcon(value) }&nbsp;&nbsp;&nbsp;
 
 
-                        <i className="icon iconfont" style={{ fontSize: '32px' }}>&#xf0008;</i>
+                        <i className="icon iconfont" style={{ fontSize: '32px' }}
+                        onClick={ e => playListThis.props.delateThisSingle(value) }>&#xf0008;</i>
 
                     </span>
 

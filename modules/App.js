@@ -1,16 +1,21 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import MyMusic from './MyMusic';
+import React from 'react';
+import Nav from './Nav';
 import MusicPlayer from './MusicPlayer';
 
-class App extends Component{
-    render(){
 
-        return(
+export default React.createClass({
+    render() {
+
+
+        return (
             <div>
-                <MyMusic />
-                <MusicPlayer />
+                <Nav/>
+
+                { this.props.children }
+
+                <MusicPlayer/>
+
             </div>
-        );
+        )
     }
-}
+})

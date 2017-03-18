@@ -1,14 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { changeTab, loadSingles, loadAlbum, addPlaylist, playThisSingle, playThisSingleToList,
-    singleListHovered, singleListHoverOut, playAll } from '../actions/actions';
+    singleListHovered, singleListHoverOut, playAll, changeTipStatus } from '../actions/actions';
 require('../style/app.scss');
 let singlesData = require('../data/singles.json');
-// let albumData = require('../data/album.json');
 import Controller from './components/Controller';
 import SlinglesList from './components/SlinglesList';
+import ClickTip from './components/ClickTip';
 
-class App extends Component {
+class MyMusic extends Component {
 
     componentWillMount(){
 
@@ -26,29 +26,26 @@ class App extends Component {
         // 修改 store
         dispatch(loadSingles(singlesData));
 
-
-
-        // albumData = (function getAlbumImgUrl(album){
-        //     for (let key in album){
-        //         album[key].imgUrl = "./resource/img/" + album[key].name + ".jpg";
-        //     }
-        //     return album;
-        // })(albumData);
-        //
-        // dispatch(loadAlbum(albumData));
-
-
     }
 
     render() {
 
-        const { nowTab, singles, currentSingle, singleListHoveredId } = this.props;
+        const { nowTab, singles, currentSingle, singleListHoveredId, clickTipStatus } = this.props;
 
 
         let myMusicStyle = {
             display: nowTab === 'myMusic' ? 'block' : 'none'
         };
 
+        
+        // 显示一下 ClickTip , 2s 后消失
+        let showClickTip = function (context) {
+            context.props.dispatch(changeTipStatus('block'));
+            setTimeout((function () {
+                this.props.dispatch(changeTipStatus('none'));
+            }).bind(context),2000);
+        };
+        
 
         // 点击播放全部, dispatch 曲库列表中所有的 singleId 组成的数组
         // 同时设置 第一首 单曲为 当前播放
@@ -71,6 +68,8 @@ class App extends Component {
                 }
             ));
 
+            showClickTip(this);
+
 
         }).bind(this);
 
@@ -91,6 +90,8 @@ class App extends Component {
                 ));
             }
 
+            showClickTip(this);
+
         }).bind(this);
 
 
@@ -104,6 +105,9 @@ class App extends Component {
                     currentTime: '00:00'
                 }
             ));
+
+            showClickTip(this);
+            
         }).bind(this);
 
 
@@ -138,6 +142,8 @@ class App extends Component {
                               singleHoverOut={ singleHoverOut }>
                 </SlinglesList>
 
+                <ClickTip clickTipStatus={ clickTipStatus } />
+
             </div>
         )
     }
@@ -153,9 +159,10 @@ function mapStateToProps(state) {
         nowTab: state.tab,
         singles: state.loadSingles,
         currentSingle: state.currentSingle,
-        singleListHoveredId: state.singleListHovered
+        singleListHoveredId: state.singleListHovered,
+        clickTipStatus: state.clickTipStatus
     }
 }
 
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(MyMusic)

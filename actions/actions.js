@@ -14,14 +14,15 @@ export const DO_PLAY = 'DO_PLAY';
 export const DO_PAUSE = 'DO_PAUSE';
 export const CHANGE_LOOP = 'CHANGE_LOOP';
 export const SET_CURRENTTIME = 'SET_CURRENTTIME';
-export const PRE_SINGLE = 'PRE_SINGLE';
-export const NEXT_SINGLE = 'NEXT_SINGLE';
+export const ANTHER_SINGLE = 'ANTHER_SINGLE';
 export const PLAYLIST_HOVERED = 'PLAYLIST_HOVERED';
 export const PLAYLIST_HOVEREOUT = 'PLAYLIST_HOVEREOUT';
 export const SINGLELIST_HOVERED = 'SINGLELIST_HOVERED';
 export const SINGLELIST_HOVEREOUT = 'SINGLELIST_HOVEREOUT';
 export const CHANGE_VALUM = 'CHANGE_VALUM';
 export const PLAY_ALL = 'PLAY_ALL';
+export const CHANGE_CLICKTIP = 'CHANGE_CLICKTIP';
+export const REMOVE_ALL_SINGLE = 'REMOVE_ALL_SINGLE';
 
 
 /*
@@ -148,21 +149,11 @@ export function setCurrentTime(currentTimes) {
 
 
 
-// 播放上一曲
-export function playPreSingle(preSingle) {
+// 播放另一首(上一首 下一首 任何一首)
+export function playAntherSingle(preSingle) {
     return{
-        type: PRE_SINGLE,
+        type: ANTHER_SINGLE,
         preSingle
-    }
-}
-
-
-
-// 播放下一曲
-export function playNextSingle(nextSingle) {
-    return{
-        type: NEXT_SINGLE,
-        nextSingle
     }
 }
 
@@ -221,6 +212,22 @@ export function playAll(singleIdArray) {
     return{
         type: PLAY_ALL,
         singleIdArray
+    }
+}
+
+
+// 操作 clickTip 状态
+export function changeTipStatus(opMessage) {
+    return{
+        type: CHANGE_CLICKTIP,
+        opMessage
+    }
+}
+
+// 移除所有歌曲
+export function removeAllSingles() {
+    return{
+        type: REMOVE_ALL_SINGLE
     }
 }
 

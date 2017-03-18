@@ -4,8 +4,10 @@ import ListController from './components/ListController';
 import PlayList from './components/PlayList';
 import PlayController from './components/PlayController';
 require('../style/app.scss');
-import { changeTab, getBrowserHeight, doPlay, doPause, changeLoop, setCurrentTime, playPreSingle,
-    playNextSingle, playThisSingle, playListHovered, playListHoverOut, changeValum } from '../actions/actions';
+import { changeTab, getBrowserHeight, doPlay, doPause, changeLoop,
+    setCurrentTime, playAntherSingle, playThisSingle,
+    playListHovered, playListHoverOut, changeValum, removePlaylist,
+    removeAllSingles} from '../actions/actions';
 
 class App extends Component {
 
@@ -85,7 +87,10 @@ class App extends Component {
             display: nowTab === 'musicPlayer' ? 'block' : 'none',
             width: '100%',
             height: browserHeight + 'px',
-            backgroundColor: '#292a2b'
+            backgroundColor: '#292a2b',
+            position: 'absolute',
+            top: '0',
+            left: '0'
         };
 
 
@@ -154,7 +159,7 @@ class App extends Component {
                 currentTimes: '00:00'
             };
 
-            dispatch(playPreSingle(preSingle));
+            dispatch(playAntherSingle(preSingle));
 
         }).bind(this);
 
@@ -186,7 +191,7 @@ class App extends Component {
                 currentTimes: '00:00'
             };
 
-            dispatch(playNextSingle(nextSingle));
+            dispatch(playAntherSingle(nextSingle));
 
         }).bind(this);
 
@@ -244,6 +249,31 @@ class App extends Component {
 
 
 
+        // 移除播放列表
+        let delateThisSingle = (function (singleId) {
+            // 如果被移除的是正在播放的歌曲,则先 播放下一曲
+            if (singleId === currentSingle.singleId){
+                nextSingleClick();
+            }
+
+            dispatch(removePlaylist(singleId));
+        }).bind(this);
+
+
+        // 移除所有歌曲
+        let removeAllSingleClick = (function () {
+
+            // 重置播放器
+            dispatch(playAntherSingle({
+                singleId: '',
+                isPlay: false,
+                currentTimes: '00:00'
+            }));
+            dispatch(removeAllSingles());
+        }).bind(this);
+
+
+
         return (
             <div style={backGroungObj}>
                 <div className="musicPlayer">
@@ -254,7 +284,8 @@ class App extends Component {
                        }).bind(this) }>&#xe61a;
                     </i>
 
-                    <ListController></ListController>
+                    <ListController
+                        removeAllSingleClick = { removeAllSingleClick }></ListController>
 
                     <PlayList ref = 'playListId' playList = { playList }
                               singles = { singles }
@@ -265,7 +296,8 @@ class App extends Component {
                               singleHoverOut={ singleHoverOut }
                               currentSingle={currentSingle}
                               doPauseClick = {doPauseClick}
-                              doPlayClick = { doPlayClick }>
+                              doPlayClick = { doPlayClick }
+                              delateThisSingle = { delateThisSingle }>
                     </PlayList>
 
                     <PlayController browserHeight = { browserHeight }
