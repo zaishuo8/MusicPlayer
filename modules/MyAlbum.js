@@ -12,7 +12,7 @@ class App extends Component {
 
         albumData = (function getAlbumImgUrl(album){
             for (let key in album){
-                album[key].imgUrl = "../resource/img/" + album[key].name + ".jpg";
+                album[key].imgUrl = "../resource/IMG/" + album[key].name + ".jpg";
             }
             return album;
         })(albumData);
