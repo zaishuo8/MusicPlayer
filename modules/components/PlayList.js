@@ -4,6 +4,7 @@ export default class PlayList extends Component{
 
     render(){
 
+
         let playListLi = [];
         let singlesList = this.props.singles;
 

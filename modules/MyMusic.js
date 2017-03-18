@@ -68,7 +68,7 @@ class MyMusic extends Component {
                 }
             ));
 
-            showClickTip(this);
+            tabToMusicPlayer();
 
 
         }).bind(this);
@@ -106,7 +106,7 @@ class MyMusic extends Component {
                 }
             ));
 
-            showClickTip(this);
+            tabToMusicPlayer();
             
         }).bind(this);
 
@@ -122,6 +122,12 @@ class MyMusic extends Component {
             this.props.dispatch(singleListHoverOut());
         }).bind(this);
 
+
+        // 切换到 musicplayer
+        let tabToMusicPlayer = (function () {
+            this.props.dispatch(changeTab('musicPlayer'));
+        }).bind(this);
+
         return (
             <div className="myMusic" style={ myMusicStyle }>
 
@@ -129,9 +135,7 @@ class MyMusic extends Component {
 
                 <i style={{ float: 'right', fontSize: '40px', marginTop: '-42px' }}
                    className="icon iconfont"
-                   onClick={ (function () {
-                        this.props.dispatch(changeTab('musicPlayer'));
-                   }).bind(this)  }>&#xe626;
+                   onClick={ tabToMusicPlayer }>&#xe626;
                 </i>
 
                 <SlinglesList singles = { singles }

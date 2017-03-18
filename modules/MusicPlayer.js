@@ -88,7 +88,7 @@ class App extends Component {
             width: '100%',
             height: browserHeight + 'px',
             backgroundColor: '#292a2b',
-            position: 'absolute',
+            position: 'fixed',
             top: '0',
             left: '0'
         };

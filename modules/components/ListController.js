@@ -3,6 +3,8 @@ import React, { Component, PropTypes } from 'react';
 export default class Controller extends Component{
 
     render(){
+
+
         return(
             <div className="controllerList">
                 {/*<div className="controllerButton">*/}
