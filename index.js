@@ -7,13 +7,14 @@ import MyMusic from './modules/MyMusic';
 import MyAlbum from './modules/MyAlbum';
 import App from './modules/app';
 import { Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-router';
+// import { createHashHistory } from 'history';
 
 let store = createStore(musicReducer);
 
 let rootElement = document.getElementById('root');
 render(
     <Provider store={store}>
-            <Router history={ browserHistory }>
+            <Router history={ hashHistory }>
                 <Route path='/' component={App}>
 
                     <IndexRoute component={MyMusic}/>
