@@ -61,9 +61,10 @@ class App extends Component {
                         currentTimes: '00:00'
                     };
 
-                    this.props.dispatch(playNextSingle(nextSingle));
+                    this.props.dispatch(playAntherSingle(nextSingle));
 
                 }).bind(this)();
+
             }else{
 
                 let setMinute = Math.floor(currentTimeBySec/60) + '';
