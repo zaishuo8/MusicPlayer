@@ -39,6 +39,12 @@ table .iconfont:hover{
         cursor: pointer;
     }
 }
+.activeLink{
+    li{
+        color: white;
+        background-color: #31c27c;
+    }
+}
 
 .myAlbum{
     width: 90%;

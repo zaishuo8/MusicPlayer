@@ -29,8 +29,8 @@ export default class Nav extends Component{
         return(
             <div className="nav" style={divStyle}>
                 <ul style={ulStyle}>
-                    <Link to="/mymusic"><li style={liStyle}>我的音乐</li></Link>
-                    <Link to="/myalbum"><li style={liStyle}>我的专辑</li></Link>
+                    <Link activeClassName='activeLink' to="/mymusic"><li style={liStyle}>我的音乐</li></Link>
+                    <Link activeClassName='activeLink' to="/myalbum"><li style={liStyle}>我的专辑</li></Link>
                 </ul>
             </div>
         );
