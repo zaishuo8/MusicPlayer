@@ -19,7 +19,7 @@ render(
 
                     <IndexRoute component={MyMusic}/>
 
-                    <Route path='/mymusic' component={MyMusic}/>
+                    {/*<Route path='/mymusic' component={MyMusic}/>*/}
                     <Route path='/myalbum' component={MyAlbum}/>
 
                     {/*<Route path='/sinalb' component={MyAlbum}/>*/}

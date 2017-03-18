@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router'
+import { Link, IndexLink } from 'react-router'
 
 export default class Nav extends Component{
     render(){
@@ -29,7 +29,11 @@ export default class Nav extends Component{
         return(
             <div className="nav" style={divStyle}>
                 <ul style={ulStyle}>
-                    <Link activeClassName='activeLink' to="/mymusic"><li style={liStyle}>我的音乐</li></Link>
+
+                    {/*解决首页导航激活, to = '/' ,但是要用 IndexLink, 不然会一直处于激活状态*/}
+                    <IndexLink activeClassName='activeLink' to="/"><li style={liStyle}>我的音乐</li></IndexLink>
+
+
                     <Link activeClassName='activeLink' to="/myalbum"><li style={liStyle}>我的专辑</li></Link>
                 </ul>
             </div>
