@@ -63,7 +63,10 @@ export default class PlayList extends Component{
         });
 
 
-        let objStyle = { height: (this.props.browserHeight - 200) + 'px'};
+        let objStyle = {
+            height: (this.props.browserHeight - 200) + 'px',
+            float: 'left'
+        };
 
 
         return(

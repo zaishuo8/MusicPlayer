@@ -9,6 +9,10 @@ import { changeTab, getBrowserHeight, doPlay, doPause, changeLoop,
     playListHovered, playListHoverOut, changeValum, removePlaylist,
     removeAllSingles} from '../actions/actions';
 
+import Lyric from './components/Lyric';
+
+
+
 class App extends Component {
 
     componentWillMount(){
@@ -288,18 +292,28 @@ class App extends Component {
                     <ListController
                         removeAllSingleClick = { removeAllSingleClick }></ListController>
 
-                    <PlayList ref = 'playListId' playList = { playList }
-                              singles = { singles }
-                              browserHeight = {browserHeight}
-                              playListThisSingleClick = { playListThisSingleClick }
-                              playListHoveredId={ playListHoveredId }
-                              singleHovered={ singleHovered }
-                              singleHoverOut={ singleHoverOut }
-                              currentSingle={currentSingle}
-                              doPauseClick = {doPauseClick}
-                              doPlayClick = { doPlayClick }
-                              delateThisSingle = { delateThisSingle }>
-                    </PlayList>
+
+                    <div>
+                        <PlayList ref = 'playListId' playList = { playList }
+                                  singles = { singles }
+                                  browserHeight = {browserHeight}
+                                  playListThisSingleClick = { playListThisSingleClick }
+                                  playListHoveredId={ playListHoveredId }
+                                  singleHovered={ singleHovered }
+                                  singleHoverOut={ singleHoverOut }
+                                  currentSingle={currentSingle}
+                                  doPauseClick = {doPauseClick}
+                                  doPlayClick = { doPlayClick }
+                                  delateThisSingle = { delateThisSingle }>
+                        </PlayList>
+
+
+                        <Lyric currentSingle = { currentSingle }
+                               browserHeight = { browserHeight }
+                               singles = { singles }></Lyric>
+                    </div>
+
+
 
                     <PlayController browserHeight = { browserHeight }
                                     currentSingle={currentSingle}

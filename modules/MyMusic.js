@@ -8,6 +8,7 @@ import Controller from './components/Controller';
 import SlinglesList from './components/SlinglesList';
 import ClickTip from './components/ClickTip';
 
+
 class MyMusic extends Component {
 
     componentWillMount(){

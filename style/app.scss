@@ -30,7 +30,6 @@ table .iconfont:hover{
     li {list-style-type:none;}
 }
 
-
 .nav{
 
     li:hover{
@@ -246,8 +245,16 @@ table .iconfont:hover{
     }
 }
 
+.lyric{
+    float: right;
+    width: 30%;
+    marginTop: 30px;
+    overflow: hidden;
+}
+
 .playControllerList{
     margin-top: 30px;
+    clear: both;
 
     i{
         font-size: 28px;
